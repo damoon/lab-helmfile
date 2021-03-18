@@ -15,7 +15,6 @@ rules:
       - pods
     verbs:
       - get
-
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -34,7 +33,6 @@ subjects:
   - kind: ServiceAccount
     name: RELEASE-NAME-fluent-bit
     namespace: development
-
 ---
 apiVersion: v1
 data:
@@ -75,7 +73,6 @@ metadata:
     heritage: Helm
     release: RELEASE-NAME
   name: RELEASE-NAME-fluent-bit-config
-
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -142,7 +139,6 @@ spec:
           name: config
   updateStrategy:
     type: RollingUpdate
-
 ---
 apiVersion: v1
 data:
@@ -156,7 +152,6 @@ metadata:
     release: RELEASE-NAME
   name: RELEASE-NAME-fluent-bit-es-tls-secret
 type: Opaque
-
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -167,4 +162,3 @@ metadata:
     heritage: Helm
     release: RELEASE-NAME
   name: RELEASE-NAME-fluent-bit
-

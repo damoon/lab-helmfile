@@ -6,8 +6,8 @@ metadata:
     app: fluent-bit
     chart: fluent-bit-2.10.3
     heritage: Helm
-    release: RELEASE-NAME
-  name: RELEASE-NAME-fluent-bit
+    release: fluent-bit
+  name: fluent-bit
 rules:
   - apiGroups:
       - ""
@@ -23,15 +23,15 @@ metadata:
     app: fluent-bit
     chart: fluent-bit-2.10.3
     heritage: Helm
-    release: RELEASE-NAME
-  name: RELEASE-NAME-fluent-bit
+    release: fluent-bit
+  name: fluent-bit
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: RELEASE-NAME-fluent-bit
+  name: fluent-bit
 subjects:
   - kind: ServiceAccount
-    name: RELEASE-NAME-fluent-bit
+    name: fluent-bit
     namespace: development
 ---
 apiVersion: v1
@@ -63,8 +63,8 @@ metadata:
     app: fluent-bit
     chart: fluent-bit-2.10.3
     heritage: Helm
-    release: RELEASE-NAME
-  name: RELEASE-NAME-fluent-bit-config
+    release: fluent-bit
+  name: fluent-bit-config
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -73,20 +73,20 @@ metadata:
     app: fluent-bit
     chart: fluent-bit-2.10.3
     heritage: Helm
-    release: RELEASE-NAME
-  name: RELEASE-NAME-fluent-bit
+    release: fluent-bit
+  name: fluent-bit
 spec:
   selector:
     matchLabels:
       app: fluent-bit
-      release: RELEASE-NAME
+      release: fluent-bit
   template:
     metadata:
       annotations:
-        checksum/config: d0e0e999af8c7d41e1b3212a079474027a4f276a293aba7d532c93d23c0fc476
+        checksum/config: 30c17b10205fb1071b5245d258762891a9199714584afa9321c136517d8128b4
       labels:
         app: fluent-bit
-        release: RELEASE-NAME
+        release: fluent-bit
     spec:
       containers:
         - env: []
@@ -117,7 +117,7 @@ spec:
               subPath: fluent-bit-output.conf
       dnsPolicy: ClusterFirst
       hostNetwork: false
-      serviceAccountName: RELEASE-NAME-fluent-bit
+      serviceAccountName: fluent-bit
       terminationGracePeriodSeconds: 10
       volumes:
         - hostPath:
@@ -127,7 +127,7 @@ spec:
             path: /var/lib/docker/containers
           name: varlibdockercontainers
         - configMap:
-            name: RELEASE-NAME-fluent-bit-config
+            name: fluent-bit-config
           name: config
   updateStrategy:
     type: RollingUpdate
@@ -141,8 +141,8 @@ metadata:
     app: fluent-bit
     chart: fluent-bit-2.10.3
     heritage: Helm
-    release: RELEASE-NAME
-  name: "RELEASE-NAME-fluent-bit-es-tls-secret"
+    release: fluent-bit
+  name: "fluent-bit-es-tls-secret"
 type: Opaque
 ---
 apiVersion: v1
@@ -152,5 +152,5 @@ metadata:
     app: fluent-bit
     chart: fluent-bit-2.10.3
     heritage: Helm
-    release: RELEASE-NAME
-  name: RELEASE-NAME-fluent-bit
+    release: fluent-bit
+  name: fluent-bit
