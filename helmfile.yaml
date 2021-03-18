@@ -1,4 +1,0 @@
-helmfiles:
-- path: helmfile-fluent-bit.yaml
-# does not unset the previos post render option
-- path: helmfile-metrics-server.yaml

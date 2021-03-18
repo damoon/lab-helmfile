@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+cd kustomize-fluent-bit
+
 cat <&0 > all.yaml
 
 function cleanup {
